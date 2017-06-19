@@ -1,0 +1,11 @@
+20 Alonso
+20 Rosberg
+25 Hamilton
+35 Rosberg
+50 Alonso
+55 Hamilton
+70 Hamilton
+80 Rosberg
+70 Alonso
+100 Alonso
+120 Hamilton

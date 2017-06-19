@@ -1,0 +1,80 @@
+#Programacao dinamica 
+#Calcular fibonnaci de um número
+import sys
+
+def fib(n):
+	if n <= 1:
+		return 1
+	return fib(n-1)+fib(n-2)
+
+for l in sys.stdin:
+	print fib(int(l))
+
+Não termina porque é muito pouco eficiente
+
+Para calcular o fib(5) precisamos de calcular o fib(3) e fib(4), para calcular fib(4) precisamos de calcular fib(3) e fib(2) e assim sucessivamente. Precisa de calcular fib(2) 3 vezes,fib(3) 2 vezes.
+
+O que queremos fazer é reutilizar o valor que ja tinha sido calculado antes quando queriamos calcular o fib de algo.
+Queremos utilizar o processo de memoization - estrategia que nos permite optimizar este tipo de problemas
+
+Vamos utilizar um dicionario que guarda os resultados calculados
+Se o valor de input ja foi calculado anteriormente basta ir ao dicionario buscar esse valor.
+--------------
+cache = {}  #dicionario para memoization/caching
+
+# fib com memoria 
+def mfib(n):
+	if n in cache:
+		return cache[n]
+	if n <= 1:
+		cache[n] = 1
+		return 1
+	cache[n] = mfib(n-1)+mfib(n-2)
+	return cache[n]
+
+for l in sys.stdin:
+	print mfib(int(l))
+
+No mfib temos uma versão top-down, ou seja, podemos evitar estar sempre a ir ver se esta na cache. Temos de começar a calcular de baixo para cima, começando assim por fib(0). Conseguimos evitar os testes em que o programa verifica se um determinado fib ja esta na cache
+-------------
+def pdfib(n):
+	cache = {} #reiniciamos a cache mas podiamos reutilizar
+	cache[0] = 1
+	cache[1] = 1
+	for i in range(2,n+1):
+		cache[i] = cache[i-1] + cache[i-2]
+	return cache[n]
+
+Não ha grandes ganhos entre esta versão e a anterior. Temos o ganho de não ter que testar coisas e o ganho de não fazer chamadas recursivas. PROGRAMAÇÃO DINAMICA.
+
+-------------
+
+Podemos ainda optimizar a memoria
+Fast fib
+
+def fpdfib(n):
+	cache_0 = 1
+	cache_1 = 1
+	for i in range(2,n+1):
+		cache_0,cache_1 = cache_1, cache_0+cache_1
+	return cache_1
+
+o cache_o representa o fib de i-2 e o cache_1 representa o fib de 
+i-1
+Passou a não utilizar um dicionario. Ficou muito mais rápido
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

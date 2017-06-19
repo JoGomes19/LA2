@@ -1,0 +1,6 @@
+#########################
+## Coloração de grafos ##
+#########################
+
+
+é bastante eficiente se isso é ou nao a soluçao do problema
